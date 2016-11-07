@@ -6,21 +6,27 @@
       real*8 uR,Emin,Emax,dE,E
       real*8 uLmin,uLmax,dduL
 
+CCC     range of x-axis
       xmin = 0
-      xmax = 1200
+      xmax = 1000
 
-      uLmin = 0.01554980
-      uLmax = 0.01554983
-      uLdiv = 100
+CCC   range of field value at the center
+c      uLmin = 0.01554980
+c      uLmax = 0.01554983
+      uLdiv = 100 ! the number of scanning points
       duL = 0.0
-      
-      Emin = -0.0001208
-      Emax = -0.0001209
-      Ediv = 100
+    
+CCC   Eigen value range
+c      Emin = -0.0001208
+c      Emax = -0.0001209
+      Emin = 0d0
+      Emax = -1d0
+      Ediv = 100 ! the number of scanning points
 
       dduL = (uLmax -uLmin)/(uLdiv*1d0)
       dE = (Emax -Emin)/(Ediv*1d0)
 
+CCC making data of field values at the right boundary
       open (2,file="uR.dat",status="replace")      
       do j = 1,uLdiv+1
          uL = uLmin +(j-1)*dduL
